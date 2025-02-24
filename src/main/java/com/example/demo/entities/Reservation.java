@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class Reservation implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date anneUniversitaire;
     private Boolean estValide;
+    @ManyToMany
+    private Set<Etudiant> etudiants;
 }
