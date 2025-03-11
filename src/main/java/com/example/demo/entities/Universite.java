@@ -22,4 +22,5 @@ public class Universite implements Serializable {
     private String adresse;
     @OneToOne
     private Foyer foyer;
+
 }

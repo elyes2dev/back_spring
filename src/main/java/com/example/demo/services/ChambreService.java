@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Chambre;
+import com.example.demo.entities.TypeChambre;
 import com.example.demo.repositories.IChambreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,15 @@ public class ChambreService implements IChambreService {
     @Override
     public Chambre update(Chambre chambre) {
         return chambreRepository.save(chambre);
+    }
+
+    @Override
+    public List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(String nomUniversite, TypeChambre type) {
+        return chambreRepository.findChambresNonReservees(nomUniversite, type);
+    }
+
+    @Override
+    public List<Chambre> getChambresParBlocEtType(long idBloc, TypeChambre typeC) {
+        return chambreRepository.findByBlocIdBlocAndTypeC(idBloc, typeC);
     }
 }
