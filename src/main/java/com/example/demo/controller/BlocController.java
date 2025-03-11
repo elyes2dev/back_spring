@@ -4,6 +4,7 @@ import com.example.demo.entities.Bloc;
 import com.example.demo.services.IBlocService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +38,10 @@ public class BlocController {
     @DeleteMapping("/delete-bloc/{id}")
     public void deletebloc(@PathVariable("id") long idBloc) {
         blocService.deleteBloc(idBloc);
+    }
+    @PostMapping("/affecterChambres/{idBloc}")
+    public ResponseEntity<Bloc> affecterChambresABloc(@RequestBody List<Long> numChambres, @PathVariable long idBloc) {
+        Bloc bloc = blocService.affecterChambresABloc(numChambres, idBloc);
+        return ResponseEntity.ok(bloc);
     }
 }

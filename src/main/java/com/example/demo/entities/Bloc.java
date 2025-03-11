@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +25,6 @@ public class Bloc implements Serializable {
     @ManyToOne
     private Foyer foyer;
     @OneToMany(mappedBy = "bloc")
+    @JsonIgnore
     private Set<Chambre> chambres;
 }

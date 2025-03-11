@@ -5,6 +5,7 @@ import com.example.demo.services.IReservationService;
 import com.example.demo.services.IUniversiteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -41,6 +42,11 @@ public class UniversiteController {
         return universiteService.affecterFoyerAUniversite(idFoyer, nomUniversite);
     }
 
+    @PostMapping("/desaffecter/{idUniversite}")
+    public ResponseEntity<Universite> desaffecterFoyerAUniversite(@PathVariable long idUniversite) {
+        Universite universite = universiteService.desaffecterFoyerAUniversite(idUniversite);
+        return ResponseEntity.ok(universite);
+    }
 
 
 }

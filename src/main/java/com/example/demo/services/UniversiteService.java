@@ -45,10 +45,20 @@ public class UniversiteService implements IUniversiteService {
         if (foyer == null || universite == null) {
             throw new RuntimeException("Foyer ou Université introuvable !");
         }
-        universite.setFoyer(foyer);
+        universite  .setFoyer(foyer);
         foyer.setUniversite(universite);
 
         return universiteRepository.save(universite);
     }
+
+    @Override
+    public Universite desaffecterFoyerAUniversite(long idUniversite) {
+        Universite universite = universiteRepository.findById(idUniversite)
+                .orElseThrow(() -> new RuntimeException("Université non trouvée"));
+
+        universite.setFoyer(null); // Suppression de l'affectation
+        return universiteRepository.save(universite);
+    }
+
 
 }
