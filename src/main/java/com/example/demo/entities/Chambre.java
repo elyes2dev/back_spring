@@ -24,4 +24,11 @@ public class Chambre implements Serializable {
     private Bloc bloc;
     @OneToMany
     private Set<Reservation> reservations;
+
+
+    public void decrementerCapacite() {
+        if (this.reservations != null && !this.reservations.isEmpty()) {
+            this.reservations.remove(this.reservations.iterator().next());
+        }
+    }
 }
