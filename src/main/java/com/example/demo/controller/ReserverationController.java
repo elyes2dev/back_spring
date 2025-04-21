@@ -37,11 +37,7 @@ public class ReserverationController {
         return reservationService.getReservationParAnneeUniversitaireEtNomUniversite(anneeUniversitaire, nomUniversite);
     }
     //otla
-    @PostMapping("/ajouter/{idBloc}/{cinEtudiant}")
-    public ResponseEntity<Reservation> ajouterReservation(@PathVariable long idBloc, @PathVariable long cinEtudiant) {
-        Reservation reservation = reservationService.ajouterReservation(idBloc, cinEtudiant);
-        return ResponseEntity.ok(reservation);
-    }
+
 
     @DeleteMapping("/annuler/{cinEtudiant}")
     public ResponseEntity<Reservation> annulerReservation(@PathVariable long cinEtudiant) {

@@ -23,8 +23,8 @@ public interface IChambreRepository extends JpaRepository<Chambre, Long> {
 
     List<Chambre> findByBlocIdBlocAndTypeC(long idBloc, TypeChambre typeC);
 
-    @Query("SELECT c FROM Chambre c WHERE c.bloc = :bloc AND SIZE(c.reservations) < c.capacite ORDER BY c.idChambre ASC")
-    Optional<Chambre> findFirstByBlocAndCapaciteNotFull(@Param("bloc") Bloc bloc);
+   // @Query("SELECT c FROM Chambre c WHERE c.bloc = :bloc AND SIZE(c.reservations) < c.capacite ORDER BY c.idChambre ASC")
+   // Optional<Chambre> findFirstByBlocAndCapaciteNotFull(@Param("bloc") Bloc bloc);
 
     Optional<Chambre> findFirstByBlocAndReservationsIsEmpty(Bloc bloc);
     Optional<Chambre> findByReservationsContaining(Reservation reservation);

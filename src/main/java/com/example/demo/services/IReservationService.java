@@ -10,7 +10,6 @@ public interface IReservationService {
     public Reservation getReservationById(String name);
     public Reservation updateReservation(Reservation reservation);
     List<Reservation> getReservationParAnneeUniversitaireEtNomUniversite(Date anneeUniversitaire, String nomUniversite);
-    public Reservation ajouterReservation(long idBloc, long cinEtudiant);
     public Reservation annulerReservation(long cinEtudiant);
 
 }

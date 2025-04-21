@@ -52,32 +52,6 @@ public class ReservationService implements IReservationService {
         return reservationRepository.findReservationsByAnneeUniversitaire(anneeUniversitaire);
     }
 
-    public Reservation ajouterReservation(long idBloc, long cinEtudiant) {
-        // Récupérer l'étudiant
-        Etudiant etudiant = etudiantRepository.findByCin(cinEtudiant)
-                .orElseThrow(() -> new RuntimeException("Étudiant introuvable"));
-
-        // Récupérer le bloc
-        Bloc bloc = blocRepository.findById(idBloc)
-                .orElseThrow(() -> new RuntimeException("Bloc introuvable"));
-
-        // Trouver une chambre disponible
-        Chambre chambreDisponible = chambreRepository.findFirstByBlocAndCapaciteNotFull(bloc)
-                .orElseThrow(() -> new RuntimeException("Aucune chambre disponible"));
-
-        // Générer l'ID de réservation
-        String idReservation = chambreDisponible.getIdChambre() + "-" + bloc.getNomBloc() + "-" + LocalDate.now().getYear();
-
-        // Créer la réservation
-        Reservation reservation = new Reservation();
-        reservation.setIdReservation(idReservation);
-        reservation.setAnneUniversitaire(new Date());
-        reservation.setEstValide(true);
-        reservation.setEtudiants(Collections.singleton(etudiant));
-
-        // Sauvegarder la réservation
-        return reservationRepository.save(reservation);
-    }
 
     public Reservation annulerReservation(long cinEtudiant) {
         // Trouver l'étudiant
